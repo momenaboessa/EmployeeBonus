@@ -1,0 +1,34 @@
+﻿@model List<EmployeeBonus.Models.Department>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1 style="text-align:center; font-weight:bold;">Departments</h1>
+
+@Html.ActionLink("New", "New", new { @class = "btn btn-primary", style = "matgin:8px;" })
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Department Id</th>
+            <th>Department Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var department in Model)
+        {
+            <tr>
+                <td>@department.Id</td>
+                <td>@department.Name</td>
+
+                <td>@Html.ActionLink("Edit", "Edit", new { department.Id }, new { @class = "btn btn-success" })</td>
+                <td>@Html.ActionLink("Delete", "Delete", new { department.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Are You Sure?')" })</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
