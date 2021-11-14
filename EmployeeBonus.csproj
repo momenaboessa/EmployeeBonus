@@ -127,8 +127,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BonusController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
-    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -141,14 +141,39 @@
     <Compile Include="Migrations\202111141327044_SetStringLength.designer.cs">
       <DependentUpon>202111141327044_SetStringLength.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111141608062_AddBonusAndAdditionals.cs" />
+    <Compile Include="Migrations\202111141608062_AddBonusAndAdditionals.designer.cs">
+      <DependentUpon>202111141608062_AddBonusAndAdditionals.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111141615326_ChangeNullity.cs" />
+    <Compile Include="Migrations\202111141615326_ChangeNullity.designer.cs">
+      <DependentUpon>202111141615326_ChangeNullity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111141626156_ChangePropName.cs" />
+    <Compile Include="Migrations\202111141626156_ChangePropName.designer.cs">
+      <DependentUpon>202111141626156_ChangePropName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111141717064_CalculateBonus.cs" />
+    <Compile Include="Migrations\202111141717064_CalculateBonus.designer.cs">
+      <DependentUpon>202111141717064_CalculateBonus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111141821181_AddProperties.cs" />
+    <Compile Include="Migrations\202111141821181_AddProperties.designer.cs">
+      <DependentUpon>202111141821181_AddProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111141822035_AddProperties1.cs" />
+    <Compile Include="Migrations\202111141822035_AddProperties1.designer.cs">
+      <DependentUpon>202111141822035_AddProperties1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
+    <Compile Include="Models\Bonus.cs" />
     <Compile Include="Models\Department.cs" />
-    <Compile Include="Models\Employee.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\EmployeeBonusViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-flaty.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -184,10 +209,10 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Employees\Index.cshtml" />
-    <Content Include="Views\Employees\EmployeeForm.cshtml" />
     <Content Include="Views\Departments\Index.cshtml" />
     <Content Include="Views\Departments\DepartmentForm.cshtml" />
+    <Content Include="Views\Bonus\BonusForm.cshtml" />
+    <Content Include="Views\Bonus\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -211,6 +236,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111141327044_SetStringLength.resx">
       <DependentUpon>202111141327044_SetStringLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111141608062_AddBonusAndAdditionals.resx">
+      <DependentUpon>202111141608062_AddBonusAndAdditionals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111141615326_ChangeNullity.resx">
+      <DependentUpon>202111141615326_ChangeNullity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111141626156_ChangePropName.resx">
+      <DependentUpon>202111141626156_ChangePropName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111141717064_CalculateBonus.resx">
+      <DependentUpon>202111141717064_CalculateBonus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111141821181_AddProperties.resx">
+      <DependentUpon>202111141821181_AddProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111141822035_AddProperties1.resx">
+      <DependentUpon>202111141822035_AddProperties1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

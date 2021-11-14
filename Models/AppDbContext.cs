@@ -9,7 +9,7 @@ namespace EmployeeBonus.Models
     public class AppDbContext:DbContext
     {
         public DbSet<Department> Departments { get; set; }
-        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Bonus> Bonus { get; set; }
 
     }
 }

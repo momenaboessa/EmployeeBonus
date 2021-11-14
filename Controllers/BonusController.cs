@@ -1,18 +1,18 @@
 ﻿using EmployeeBonus.Models;
+using EmployeeBonus.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
-using EmployeeBonus.ViewModels;
 
 namespace EmployeeBonus.Controllers
 {
-    public class EmployeesController : Controller
+    public class BonusController : Controller
     {
         private readonly AppDbContext _context;
-        public EmployeesController()
+        public BonusController()
         {
             _context = new AppDbContext();
         }
@@ -20,33 +20,32 @@ namespace EmployeeBonus.Controllers
         {
             _context.Dispose();
         }
-
-        // GET: Employees
+        // GET: Bonus
         public ActionResult Index()
         {
-            IEnumerable<Employee> employees = _context.Employees
-                .Include(e => e.Department);
+            IEnumerable<Bonus> bonus = _context.Bonus
+                .Include(b => b.Department);
 
-            return View(employees);
+            return View(bonus);
         }
 
         public ActionResult New()
         {
-            var employee = new Employee();
+            var bonus = new Bonus();
             var departments = _context.Departments.ToList();
 
             var viewModel = new EmployeeBonusViewModel
             {
-                Employee = employee,
+                Bonus = bonus,
                 Departments = departments
             };
-            return View("EmployeeForm", viewModel);
+            return View("BonusForm", viewModel);
         }
 
         public ActionResult Edit(int id)
         {
-            var employee = _context.Employees.SingleOrDefault(e => e.Id == id);
-            if (employee == null)
+            var bonus = _context.Bonus.SingleOrDefault(b => b.Id == id);
+            if (bonus == null)
             {
                 return HttpNotFound();
             }
@@ -54,61 +53,59 @@ namespace EmployeeBonus.Controllers
 
             var viewModel = new EmployeeBonusViewModel
             {
-                Employee = employee,
+                Bonus = bonus,
                 Departments = departments
             };
-            return View("EmployeeForm", viewModel);
+            return View("BonusForm", viewModel);
         }
 
         public ActionResult Delete(int id)
         {
-            var employee = _context.Employees.SingleOrDefault(e => e.Id == id);
-            if (employee == null)
+            var bonus = _context.Bonus.SingleOrDefault(e => e.Id == id);
+            if (bonus == null)
             {
                 return HttpNotFound();
             }
-            _context.Employees.Remove(employee);
+            _context.Bonus.Remove(bonus);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(Employee employee)
+        public ActionResult Save(Bonus bonus)
         {
             if (!ModelState.IsValid)
             {
                 var Departments = _context.Departments.ToList();
                 var viewModel = new EmployeeBonusViewModel
-                { 
-                    Employee = employee,
+                {
+                    Bonus = bonus,
                     Departments = Departments
                 };
-                return View("EmployeeForm", viewModel);
+                return View("BonusForm", viewModel);
             }
-            else if (employee.Id == 0)
+            else if (bonus.Id == 0)
             {
-                _context.Employees.Add(employee);
+                _context.Bonus.Add(bonus);
                 _context.SaveChanges();
             }
             else
             {
-                var employeeInDb = _context.Employees.SingleOrDefault(e => e.Id == employee.Id);
-                if (employeeInDb == null)
+                var bonusInDb = _context.Bonus.SingleOrDefault(b => b.Id == bonus.Id);
+                if (bonusInDb == null)
                 {
                     return HttpNotFound();
                 }
 
-                employeeInDb.Name = employee.Name;
-                employeeInDb.DepartmentId = employee.DepartmentId;
-                employeeInDb.ExperienceLevel = employee.ExperienceLevel;
-                employeeInDb.JoiningDate = employee.JoiningDate;
-                employeeInDb.Salary = employee.Salary;
-                employeeInDb.Bonus = employee.Bonus;
+                bonusInDb.EmployeeName = bonus.EmployeeName;
+                bonusInDb.DepartmentId = bonus.DepartmentId;
+                bonusInDb.ExperienceLevel = bonus.ExperienceLevel;
+                bonusInDb.JoiningDate = bonus.JoiningDate;
+                bonusInDb.Salary = bonus.Salary;
             }
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
-
 
     }
 }

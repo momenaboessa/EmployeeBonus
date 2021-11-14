@@ -23,7 +23,7 @@ namespace EmployeeBonus
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-flaty.css",
                       "~/Content/site.css"));
         }
     }

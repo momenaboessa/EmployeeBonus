@@ -1,0 +1,51 @@
+﻿@model EmployeeBonus.ViewModels.EmployeeBonusViewModel
+@{
+    ViewBag.Title = "BonusForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (Model.Bonus.Id == 0)
+{
+    <h1>New Bonus</h1>
+}
+else
+{
+    <h1>Edit Bonus</h1>
+}
+
+@using (Html.BeginForm("Save", "Bonus", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Bonus.EmployeeName)
+        @Html.TextBoxFor(m => m.Bonus.EmployeeName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Bonus.EmployeeName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Bonus.DepartmentId)
+        @Html.DropDownListFor(m => m.Bonus.DepartmentId, new SelectList(Model.Departments, "Id", "Name"), "Select Department", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Bonus.Id)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Bonus.ExperienceLevel)
+        @Html.TextBoxFor(m => m.Bonus.ExperienceLevel, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Bonus.ExperienceLevel)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Bonus.JoiningDate)
+        @Html.TextBoxFor(m => m.Bonus.JoiningDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Bonus.JoiningDate)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Bonus.Salary)
+        @Html.TextBoxFor(m => m.Bonus.Salary, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Bonus.Salary)
+    </div>
+
+    @Html.HiddenFor(m => m.Bonus.Id)
+    @Html.AntiForgeryToken()
+    <button class="btn btn-success">Save</button>
+}
+
+@Scripts.Render("~/bundles/jqueryval")

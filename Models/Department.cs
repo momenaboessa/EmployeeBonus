@@ -10,6 +10,9 @@ namespace EmployeeBonus.Models
     {
         public int Id { get; set; }
         [StringLength(150)]
+        [Required]
         public string Name { get; set; }
+
+        public virtual List<Bonus> Bonus { get; set; }
     }
 }

@@ -8,7 +8,8 @@ namespace EmployeeBonus.ViewModels
 {
     public class EmployeeBonusViewModel
     {
-        public Employee Employee { get; set; }
+        public Bonus Bonus { get; set; }
         public virtual List<Department> Departments { get; set; }
+
     }
 }

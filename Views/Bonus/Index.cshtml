@@ -1,0 +1,47 @@
+﻿@model IEnumerable<EmployeeBonus.Models.Bonus>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1 style="text-align:center; font-weight:bold;">Employee Bonus</h1>
+
+@Html.ActionLink("New", "New", "Bonus", new { }, new { @class = "btn btn-primary", style = "margin:8px;" })
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Employee Id</th>
+            <th>Employee Name</th>
+            <th>Department</th>
+            <th>Experience level</th>
+            <th>Joining Date</th>
+            <th>Salary</th>
+            <th>Bonus</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var bonus in Model)
+        {
+            <tr>
+                <td>@bonus.Id</td>
+                <td>@bonus.EmployeeName</td>
+                <td>@bonus.Department.Name</td>
+                <td>@bonus.ExperienceLevel</td>
+                <td>@bonus.JoiningDate.ToString("yyyy/M/d")</td>
+                <td>@bonus.Salary</td>
+                <td>@bonus.BonusAmount</td>
+                <td>@Html.ActionLink("Edit", "Edit", new { bonus.Id }, new { @class = "btn btn-success" })</td>
+                <td>@Html.ActionLink("Delete", "Delete", new { bonus.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Are You Sure?')" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<label>Total Bonus</label>
+<input type="text" name="Total Bonus" class="form-control" readonly value="@Model.Sum(b => b.BonusAmount)" />
